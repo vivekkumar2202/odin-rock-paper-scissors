@@ -18,29 +18,45 @@ function getHumanChoice() {
     return choice_lower;
 }
 
-let humanScore = 0;
-let computerScore = 0;
+function playGame() {
 
-function playRound(humanChoice, computerChoice) {
-    if (humanChoice === computerChoice) {
-        console.log("It's a tie");
+    let humanScore = 0;
+    let computerScore = 0;
+    
+    for (let i = 0; i < 5; i++) {
+        function playRound(humanChoice, computerChoice) {
+            if (humanChoice === computerChoice) {
+                console.log("It's a tie");
+            }
+            else if (humanChoice === "rock" && computerChoice === "scissor" ||
+                humanChoice === "paper" && computerChoice === "rock" ||
+                humanChoice === "scissor" && computerChoice === "paper") {
+                console.log(`Yay! you won, ${humanChoice} beats ${computerChoice}`);
+                humanScore += 1;
+                }
+            else {    
+                console.log(`You lose! ${computerChoice} beats ${humanChoice}`)
+                computerScore += 1;
+            }
+            console.log(`Your score: ${humanScore}\nComputer score: ${computerScore}`);
+            return
+        }
+
+        let humanSelection = getHumanChoice();
+        let computerSelection = getComputerChoice();
+
+        playRound(humanSelection, computerSelection);
+    }
+    if (computerScore > humanScore) {
+        console.log("Computer won the game");
         return;
     }
-    if (humanChoice === "rock" && computerChoice === "scissor" ||
-        humanChoice === "paper" && computerChoice === "rock" ||
-        humanChoice === "scissor" && computerChoice === "paper") {
-        console.log(`Yay! you won, ${humanChoice} beats ${computerChoice}`);
-        humanScore += 1;
-        }
-    else {    
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}`)
-        computerScore += 1;
+    if (humanScore > computerScore) {
+        console.log("You won the game");
+        return;
     }
-    console.log(`Your score: ${humanScore}\nComputer score: ${computerScore}`);
-    return
+    console.log("The game ended with a tie");
+    return;
 }
 
-let humanSelection = getHumanChoice();
-let computerSelection = getComputerChoice();
-
-playRound(humanSelection, computerSelection);
+playGame();
