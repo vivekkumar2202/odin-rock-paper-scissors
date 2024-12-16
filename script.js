@@ -12,3 +12,6 @@ function getHumanChoice() {
     let choice_lower = choice.toLowerCase();
     return choice_lower;
 }
+
+let humanScore = 0;
+let computerScore = 0;
